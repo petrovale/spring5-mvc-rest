@@ -36,13 +36,28 @@ public class CustomerServiceImpl implements CustomerService {
   public CustomerDTO getCustomerById(Long id) {
     return customerRepository.findById(id)
         .map(customerMapper::customerToCustomerDTO)
+        .map(customerDTO -> {
+          //set API URL
+          customerDTO.setCustomerUrl("/api/v1/customer/" + id);
+          return customerDTO;
+        })
         .orElseThrow(RuntimeException::new); // todo implement better exception handling
   }
 
   @Override
   public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
-    Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+    return saveAndReturnDTO(customerMapper.customerDtoToCustomer(customerDTO));
+  }
 
+  @Override
+  public CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO) {
+    Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+    customer.setId(id);
+
+    return saveAndReturnDTO(customer);
+  }
+
+  private CustomerDTO saveAndReturnDTO(Customer customer) {
     Customer savedCustomer = customerRepository.save(customer);
 
     CustomerDTO returnDto = customerMapper.customerToCustomerDTO(savedCustomer);
