@@ -4,10 +4,12 @@ import guru.springfamework.api.v1.mapper.CustomerMapper;
 import guru.springfamework.api.v1.model.CustomerDTO;
 import guru.springfamework.domain.Customer;
 import guru.springfamework.repositories.CustomerRepository;
+import guru.springfamework.repositories.VendorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +28,9 @@ public class CustomerServiceImplTest {
   CustomerMapper customerMapper = CustomerMapper.INSTANCE;
 
   CustomerService customerService;
+
+  @Autowired
+  VendorRepository vendorRepository;
 
   @Before
   public void setUp() throws Exception {
