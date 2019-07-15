@@ -8,9 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import static guru.springfamework.controllers.v1.CustomerController.BASE_URL;
+
 @Controller
-@RequestMapping("/api/v1/customers/")
+@RequestMapping(BASE_URL)
 public class CustomerController {
+
+  public static final String BASE_URL = "/api/v1/customers";
 
   private final CustomerService customerService;
 
