@@ -1,7 +1,7 @@
 package guru.springfamework.services;
 
 import guru.springfamework.api.v1.mapper.CustomerMapper;
-import guru.springfamework.api.v1.model.CustomerDTO;
+import guru.springframework.model.CustomerDTO;
 import guru.springfamework.domain.Customer;
 import guru.springfamework.repositories.CustomerRepository;
 import guru.springfamework.repositories.VendorRepository;
@@ -20,7 +20,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 public class CustomerServiceImplTest {
-
 
   @Mock
   CustomerRepository customerRepository;
